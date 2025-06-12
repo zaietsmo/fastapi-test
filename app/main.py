@@ -1,9 +1,11 @@
-from fastapi import FastAPI, HTTPException
-from typing import List, Optional
-from app.schemas.product import Product
 import json
 import os
 import time
+from typing import List, Optional
+
+from fastapi import FastAPI, HTTPException
+
+from app.schemas.product import Product
 
 app = FastAPI()
 
