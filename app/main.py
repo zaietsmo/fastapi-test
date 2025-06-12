@@ -51,17 +51,3 @@ def get_product_field(product_name: str, product_field: str):
     raise HTTPException(status_code=404, detail="Product not found")
 
 
-@app.on_event("startup")
-def wait_for_products_json():
-    path = os.path.join(
-        os.path.dirname(__file__), "..", "scraper", "output", "products.json"
-    )
-    timeout = 300  # seconds
-    interval = 2  # seconds
-    waited = 0
-    while not os.path.exists(path):
-        if waited >= timeout:
-            raise RuntimeError(f"Timeout: {path} not found after {timeout} seconds.")
-        print(f"Waiting for {path} to exist...")
-        time.sleep(interval)
-        waited += interval
